@@ -1,0 +1,20 @@
+{
+  "name": "sf-sitemap-crawler",
+  "version": "1.0.0",
+  "description": "Simple sitemap crawler using Screaming Frog SEO Spider",
+  "main": "sitemap.js",
+  "bin": {
+    "sf-crawler": "./sitemap.js"
+  },
+  "scripts": {
+    "start": "node sitemap.js"
+  },
+  "keywords": [
+    "seo",
+    "crawler",
+    "sitemap",
+    "screaming-frog"
+  ],
+  "author": "",
+  "license": "MIT"
+}

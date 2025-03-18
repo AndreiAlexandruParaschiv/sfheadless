@@ -1,0 +1,7 @@
+{
+  "screamingFrogPath": "/Applications/Screaming Frog SEO Spider.app/Contents/MacOS/ScreamingFrogSEOSpiderLauncher",
+  "outputFolder": "./results/sitemap",
+  "exportTabs": "URL:All,Response Codes:All,Page Titles:All,Meta Description:All",
+  "saveOptions": "--headless --save-crawl --save-report \"Crawl Overview\"",
+  "exportFormat": "csv"
+} 
