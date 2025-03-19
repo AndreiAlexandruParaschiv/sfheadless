@@ -16,34 +16,11 @@ The script will:
 4. Export URL data, response codes, page titles, and meta descriptions
 5. Save results to a structured folder for each sitemap
 
-## Features
-
-- **Comprehensive sitemap discovery**:
-  - Reads robots.txt to find all declared sitemaps
-  - Falls back to default sitemap.xml if needed
-  - Handles gzipped robots.txt files automatically
-- **Enhanced content handling**:
-  - Automatically decompresses gzipped content
-  - Multiple fallback methods to ensure content retrieval
-  - Robust binary content detection
-- **Sitemap index support**:
-  - Detects and parses sitemap index files
-  - Creates organized nested folder structure
-  - Processes each child sitemap separately
-- **Organized output**:
-  - Creates structured folders for each sitemap
-  - Names folders based on sitemap path
-  - Separate folders for sitemap index children
-- **Smart URL handling**:
-  - Handles www vs non-www domains
-  - Follows redirects automatically
-  - Retries failed connections
-
 ## Requirements
 
 - Screaming Frog SEO Spider installed
-- Node.js
-- NPM packages: fast-xml-parser
+- node.js
+- npm packages: fast-xml-parser
 
 ## Installation
 
@@ -76,7 +53,7 @@ Customize these settings to match your environment:
 
 ## Output Structure
 
-The script creates a well-organized directory structure:
+The script creates a directory structure:
 
 ```
 results/
@@ -115,22 +92,3 @@ Each sitemap crawl generates several files:
 - `response_codes_all.csv` - HTTP response code data
 - `page_titles_all.csv` - Page title data
 - `meta_description_all.csv` - Meta description data
-
-## Error Handling
-
-The script includes comprehensive error handling:
-
-- Retries failed HTTP requests
-- Falls back to curl for problematic downloads
-- Handles binary and compressed content
-- Gracefully manages XML parsing errors
-- Provides detailed logs of any issues
-
-## Performance Optimization
-
-The script is optimized for efficient operation:
-
-- Minimizes redundant HTTP requests
-- Uses streaming for large file handling
-- Implements appropriate timeouts
-- Provides fallback mechanisms for resilience
