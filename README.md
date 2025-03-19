@@ -1,6 +1,6 @@
-# Sitemap Discovery and Crawler
+# Screaming Frog Sitemap Crawler
 
-An efficient Node.js script to discover, process, and crawl website sitemaps using Screaming Frog SEO Spider.
+This script automates the process of crawling multiple sitemaps using Screaming Frog SEO Spider. It discovers sitemaps from a given domain, processes them, and organizes the output in a structured manner.
 
 ## Usage
 
@@ -86,7 +86,7 @@ results/
           │   ├── crawl.seospider
           │   ├── crawl_overview.csv
           │   └── ...
-          ├── ca_sitemap/                  # /ca/sitemap.xml
+          ├── en_sitemap/                  # /en/sitemap.xml
           │   ├── crawl.seospider
           │   ├── crawl_overview.csv
           │   └── ...
