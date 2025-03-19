@@ -16,5 +16,8 @@
     "screaming-frog"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "fast-xml-parser": "^5.0.9"
+  }
 }
