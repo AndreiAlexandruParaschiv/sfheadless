@@ -1,94 +1,88 @@
-# Screaming Frog Sitemap Crawler
+# SEO Assessment Tools
 
-This script automates the process of crawling multiple sitemaps using Screaming Frog SEO Spider. It discovers sitemaps from a given domain, processes them, and organizes the output in a structured manner.
+This repository contains tools for performing SEO and accessibility assessments using Screaming Frog SEO Spider in headless mode.
 
-## Usage
+## Setup
 
-```bash
-node sitemap.js https://example.com
+1. Clone this repository
+2. Make sure you have Node.js installed (version 14+)
+3. Install dependencies with `npm install`
+4. Make sure Screaming Frog SEO Spider is installed on your machine
+5. Update the `config.json` file with your Screaming Frog path and other preferences
+
+```json
+{
+  "screamingFrogPath": "/path/to/ScreamingFrogSEOSpiderLauncher",
+  "outputFolder": "./results/sitemap",
+  "exportTabs": "URL:All,Response Codes:All,Page Titles:All,Meta Description:All",
+  "saveOptions": "--headless --save-crawl --save-report \"Crawl Overview\"",
+  "exportFormat": "csv"
+}
+```
+
+## Sitemap Crawler (sitemap.js)
+
+The sitemap crawler processes sitemaps to extract URLs and analyze them with Screaming Frog.
+
+### Features:
+
+- Discovers sitemaps via robots.txt or common locations
+- Supports sitemap index files
+- Processes both regular and gzipped sitemaps
+- Searches for related sitemaps based on discovered ones (language variants, blog sitemaps, etc.)
+- Provides organized output of analysis results
+
+### Usage
+
+```
+node sitemap.js <website-url>
+```
+
+Example:
+
+```
+node sitemap.js https://www.example.com
 ```
 
 The script will:
 
-1. Check robots.txt for sitemap declarations
-2. Process sitemap index files to find all child sitemaps
-3. Crawl each sitemap separately with Screaming Frog
-4. Export URL data, response codes, page titles, and meta descriptions
-5. Save results to a structured folder for each sitemap
+1. Attempt to locate sitemaps for the domain
+2. Process each sitemap found
+3. Run Screaming Frog analysis on each sitemap
+4. Save results to the configured output directory
 
-## Requirements
+## Accessibility Audit (a11y.js)
 
-- Screaming Frog SEO Spider installed
-- node.js
-- npm packages: fast-xml-parser
+The accessibility audit tool checks for WCAG compliance issues across pages found in a website's sitemap.
 
-## Installation
+### Features:
 
-```bash
-npm install
-```
+- Discovers sitemaps via robots.txt or common locations
+- Extracts URLs for accessibility testing
+- Performs accessibility audits for multiple WCAG standards:
+  - WCAG 2.0 A
+  - WCAG 2.0 AA
+  - WCAG 2.0 AAA
+  - WCAG 2.1 AA
+- Generates a comprehensive HTML summary report
+- Organizes violations by type and standard
 
-## Configuration
-
-Settings are stored in `config.json`:
-
-```json
-{
-  "screamingFrogPath": "/Applications/Screaming Frog SEO Spider.app/Contents/MacOS/ScreamingFrogSEOSpiderLauncher",
-  "outputFolder": "./results/sitemap",
-  "exportTabs": "URL:All,Response Codes:All,Page Titles:All,Meta Description:All",
-  "saveOptions": "--headless --save-crawl --save-report \"Crawl Overview\"",
-  "exportFormat": "csv",
-  "bulk-export": "URL:All,Response Codes:All,Page Titles:All,Meta Description:All,Links:All Inlinks,Links:All Outlinks,Sitemaps:URLs in Sitemap"
-}
-```
-
-Customize these settings to match your environment:
-
-- `screamingFrogPath`: Path to your Screaming Frog executable
-- `outputFolder`: Base directory for results (relative or absolute)
-- `exportTabs`: Data to export from crawls
-- `saveOptions`: Additional Screaming Frog options
-- `exportFormat`: Output format (csv or xlsx)
-
-## Output Structure
-
-The script creates a directory structure:
+### Usage
 
 ```
-results/
-  └── sitemap/
-      └── sitemap_example_com/
-          ├── sitemap/                     # Default sitemap.xml
-          │   ├── crawl.seospider
-          │   ├── crawl_overview.csv
-          │   └── ...
-          ├── en_sitemap/                  # /en/sitemap.xml
-          │   ├── crawl.seospider
-          │   ├── crawl_overview.csv
-          │   └── ...
-          ├── blog_blog-sitemap/           # /blog/blog-sitemap.xml
-          │   ├── crawl.seospider
-          │   ├── crawl_overview.csv
-          │   └── ...
-          └── sitemap_index/               # For sitemap index files
-              ├── product_sitemap/         # Child sitemap in index
-              │   ├── crawl.seospider
-              │   ├── crawl_overview.csv
-              │   └── ...
-              └── category_sitemap/        # Another child sitemap
-                  ├── crawl.seospider
-                  ├── crawl_overview.csv
-                  └── ...
+node a11y.js <website-url>
 ```
 
-## Output Files
+Example:
 
-Each sitemap crawl generates several files:
+```
+node a11y.js https://www.example.com
+```
 
-- `crawl.seospider` - Screaming Frog project file
-- `crawl_overview.csv` - Summary report of the crawl
-- `url_all.csv` - Complete URL data
-- `response_codes_all.csv` - HTTP response code data
-- `page_titles_all.csv` - Page title data
-- `meta_description_all.csv` - Meta description data
+The script will:
+
+1. Find the website's sitemap
+2. Extract URLs for analysis (limited to 50 to prevent overload)
+3. Run Screaming Frog accessibility audits for each WCAG standard
+4. Generate a summary HTML report
+5. Save all results to a dedicated folder in ./results/a11y/

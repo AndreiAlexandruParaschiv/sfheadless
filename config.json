@@ -3,5 +3,6 @@
   "outputFolder": "./results/sitemap",
   "exportTabs": "URL:All,Response Codes:All,Page Titles:All,Meta Description:All",
   "saveOptions": "--headless --save-crawl --save-report \"Crawl Overview\"",
-  "exportFormat": "csv"
-} 
+  "exportFormat": "csv",
+  "googleApiKey": "your-google-api-key"
+}
